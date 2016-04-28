@@ -11,6 +11,7 @@ RUN rpm -hUv http://software.internet2.edu/rpms/el6/x86_64/main/RPMS/Internet2-r
 RUN yum -y install perfsonar-testpoint
 RUN mkdir -p /var/log/supervisor 
 ADD supervisord.conf /etc/supervisord.conf
+RUN sed -r 's/allow_internal_addresses\s+0$/allow_internal_addresses 1/' /etc/perfsonar/lsregistrationdaemon.conf
 
 # The following ports are used:
 # bwctl:4823, 5001-5900, 6001-6200
